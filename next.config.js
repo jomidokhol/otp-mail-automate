@@ -1,17 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint warnings or errors.
-    ignoreDuringBuilds: true,
+  eslint: { 
+    ignoreDuringBuilds: true 
   },
-  typescript: {
-    // Ignores typescript errors
-    ignoreBuildErrors: true,
+  typescript: { 
+    ignoreBuildErrors: true 
   },
-  // Automatically fix some hanging issues in API routes
+  // This completely stops the build from generating heavy source maps
+  // which saves a massive amount of RAM on Vercel
+  productionBrowserSourceMaps: false,
+  // Disables the aggressive compiler that causes the worker to crash
+  swcMinify: false,
   experimental: {
-    serverComponentsExternalPackages: ['nodemailer']
+    serverComponentsExternalPackages:['nodemailer']
   }
 }
 
